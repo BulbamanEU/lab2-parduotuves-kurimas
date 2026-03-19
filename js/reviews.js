@@ -69,12 +69,18 @@ function initReviews() {
         }
     ];
 
-    // Add sample reviews to products
+    // Add sample reviews to products (only if they don't exist)
     sampleReviews.forEach(review => {
         if (!productReviews[review.productId]) {
             productReviews[review.productId] = [];
         }
-        productReviews[review.productId].push(review);
+        // Check if this exact review already exists to avoid duplicates
+        const exists = productReviews[review.productId].some(
+            r => r.author === review.author && r.date === review.date && r.text === review.text
+        );
+        if (!exists) {
+            productReviews[review.productId].push(review);
+        }
     });
 
     // Collect all reviews for the reviews section
