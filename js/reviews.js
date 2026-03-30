@@ -129,14 +129,6 @@ function addReview(productId, author, rating, text) {
     productReviews[productId].push(review);
     saveReviews();
 
-    // Update product rating
-    const product = products.find(p => p.id === productId);
-    if (product) {
-        const reviews = productReviews[productId];
-        const totalRating = reviews.reduce((sum, r) => sum + r.rating, 0);
-        product.rating = totalRating / reviews.length;
-    }
-
     return review;
 }
 
@@ -216,8 +208,4 @@ function submitReview(productId) {
     alert('Thank you for your review!');
 }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    initReviews();
-    displayAllReviews();
-});
+// Initialize on page load - handled by main.js

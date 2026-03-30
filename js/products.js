@@ -8,7 +8,6 @@ const products = [
         price: 89.99,
         category: "jewelry",
         image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400",
-        rating: 4.8,
         reviews: []
     },
     {
@@ -18,7 +17,6 @@ const products = [
         price: 65.00,
         category: "jewelry",
         image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=400",
-        rating: 4.6,
         reviews: []
     },
     {
@@ -28,7 +26,6 @@ const products = [
         price: 45.50,
         category: "jewelry",
         image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400",
-        rating: 4.9,
         reviews: []
     },
     {
@@ -38,7 +35,6 @@ const products = [
         price: 55.00,
         category: "jewelry",
         image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400",
-        rating: 4.7,
         reviews: []
     },
     {
@@ -48,7 +44,6 @@ const products = [
         price: 120.00,
         category: "jewelry",
         image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400",
-        rating: 5.0,
         reviews: []
     },
     {
@@ -58,7 +53,6 @@ const products = [
         price: 78.00,
         category: "jewelry",
         image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400",
-        rating: 4.5,
         reviews: []
     },
     {
@@ -68,7 +62,6 @@ const products = [
         price: 52.00,
         category: "jewelry",
         image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400",
-        rating: 4.8,
         reviews: []
     },
     // Eco-Friendly Food Category
@@ -79,7 +72,6 @@ const products = [
         price: 18.50,
         category: "food",
         image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400",
-        rating: 4.9,
         reviews: []
     },
     {
@@ -89,7 +81,6 @@ const products = [
         price: 12.99,
         category: "food",
         image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400",
-        rating: 4.7,
         reviews: []
     },
     {
@@ -99,7 +90,6 @@ const products = [
         price: 24.00,
         category: "food",
         image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400",
-        rating: 4.8,
         reviews: []
     },
     {
@@ -109,7 +99,6 @@ const products = [
         price: 8.50,
         category: "food",
         image: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400",
-        rating: 4.6,
         reviews: []
     },
     {
@@ -119,7 +108,6 @@ const products = [
         price: 9.99,
         category: "food",
         image: "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=400",
-        rating: 4.5,
         reviews: []
     },
     {
@@ -128,8 +116,7 @@ const products = [
         description: "Creamy almond butter made from dry-roasted almonds. No oils or additives. Perfect for toast, smoothies, or baking. 340g jar.",
         price: 16.00,
         category: "food",
-        image: "https://images.unsplash.com/photo-1612187715474-5e78a3723fb2?w=400",
-        rating: 4.7,
+        image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400",
         reviews: []
     },
     {
@@ -139,7 +126,6 @@ const products = [
         price: 11.50,
         category: "food",
         image: "https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=400",
-        rating: 4.8,
         reviews: []
     },
     // Home Decor Category
@@ -150,7 +136,6 @@ const products = [
         price: 35.00,
         category: "decor",
         image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400",
-        rating: 4.6,
         reviews: []
     },
     {
@@ -160,7 +145,6 @@ const products = [
         price: 22.00,
         category: "decor",
         image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400",
-        rating: 4.8,
         reviews: []
     },
     {
@@ -169,8 +153,7 @@ const products = [
         description: "Set of 3 hand-poured soy wax candles in relaxing scents: lavender, vanilla, and sandalwood. Long-lasting burn time. 200g each.",
         price: 28.00,
         category: "decor",
-        image: "https://images.unsplash.com/photo-1602607434848-727ac1e8c569?w=400",
-        rating: 4.9,
+        image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400",
         reviews: []
     },
     {
@@ -180,7 +163,6 @@ const products = [
         price: 65.00,
         category: "decor",
         image: "https://images.unsplash.com/photo-1522758971460-1d21eed7dc1d?w=400",
-        rating: 4.7,
         reviews: []
     },
     {
@@ -189,8 +171,7 @@ const products = [
         description: "Rustic wooden photo frame made from reclaimed wood. Perfect for displaying your favorite memories. Fits 5x7 inch photos.",
         price: 19.50,
         category: "decor",
-        image: "https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=400",
-        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400",
         reviews: []
     },
     {
@@ -199,8 +180,7 @@ const products = [
         description: "Elegant hand-stitched linen table runner. Natural, breathable fabric. Perfect for special occasions or everyday dining. Size: 14x72 inches.",
         price: 42.00,
         category: "decor",
-        image: "https://images.unsplash.com/photo-1616627561839-7c758f7f1c8e?w=400",
-        rating: 4.8,
+        image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400",
         reviews: []
     },
     {
@@ -210,7 +190,6 @@ const products = [
         price: 24.00,
         category: "decor",
         image: "https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=400",
-        rating: 4.6,
         reviews: []
     },
     {
@@ -220,7 +199,6 @@ const products = [
         price: 55.00,
         category: "decor",
         image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400",
-        rating: 4.7,
         reviews: []
     }
 ];

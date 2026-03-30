@@ -3,10 +3,41 @@
 // Current filter
 let currentFilter = 'all';
 
+// Toast notification system
+function showToast(title, message, type = 'info') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    
+    let icon = 'fa-info-circle';
+    if (type === 'success') icon = 'fa-check-circle';
+    if (type === 'error') icon = 'fa-exclamation-circle';
+
+    toast.innerHTML = `
+        <i class="fas ${icon} toast-icon"></i>
+        <div class="toast-content">
+            <div class="toast-title">${title}</div>
+            <div class="toast-message">${message}</div>
+        </div>
+        <button class="toast-close" onclick="this.parentElement.remove()">&times;</button>
+    `;
+
+    container.appendChild(toast);
+
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+        toast.classList.add('hiding');
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+}
+
 // Initialize application
 document.addEventListener('DOMContentLoaded', function() {
-    renderProducts('all');
     initReviews();
+    renderProducts('all');
+    displayAllReviews();
     initCart();
 });
 
@@ -21,16 +52,19 @@ function renderProducts(filter) {
         ? products 
         : products.filter(p => p.category === filter);
 
-    productGrid.innerHTML = filteredProducts.map(product => `
+    productGrid.innerHTML = filteredProducts.map(product => {
+        const rating = calculateRating(product.id);
+        const reviewCount = getReviewCount(product.id);
+        return `
         <div class="product-card" data-category="${product.category}">
-            <img src="${product.image}" alt="${product.name}" class="product-image" onclick="openModal(${product.id})">
+            <img src="${product.image}" alt="${product.name}" class="product-image" onclick="openModal(${product.id})" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Not+Available'">
             <div class="product-info">
                 <span class="product-category">${getCategoryName(product.category)}</span>
                 <h3 class="product-title" onclick="openModal(${product.id})">${product.name}</h3>
                 <p class="product-description">${product.description}</p>
                 <div class="product-rating">
-                    ${getStarRating(product.rating)}
-                    <span>(${getReviewCount(product.id)})</span>
+                    ${getStarRating(rating, reviewCount)}
+                    <span class="review-count">(${reviewCount} ${reviewCount === 1 ? 'review' : 'reviews'})</span>
                 </div>
                 <div class="product-price">€${product.price.toFixed(2)}</div>
                 <button class="add-to-cart" onclick="addToCart(${product.id})">
@@ -38,7 +72,7 @@ function renderProducts(filter) {
                 </button>
             </div>
         </div>
-    `).join('');
+    `}).join('');
 
     // Update filter buttons
     updateFilterButtons(filter);
@@ -54,13 +88,25 @@ function getCategoryName(category) {
     return names[category] || category;
 }
 
-// Get star rating HTML
-function getStarRating(rating) {
+// Calculate rating from reviews
+function calculateRating(productId) {
+    const reviews = getProductReviews(productId);
+    if (reviews.length === 0) return 0;
+    const totalRating = reviews.reduce((sum, r) => sum + r.rating, 0);
+    return totalRating / reviews.length;
+}
+
+// Get star rating HTML with numeric rating
+function getStarRating(rating, reviewCount) {
+    if (reviewCount === 0) {
+        return '<span class="no-rating">No reviews yet</span>';
+    }
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
     let stars = '★'.repeat(fullStars);
     if (hasHalfStar) stars += '½';
-    return stars + '☆'.repeat(5 - fullStars - (hasHalfStar ? 1 : 0));
+    stars += '☆'.repeat(5 - fullStars - (hasHalfStar ? 1 : 0));
+    return `<span class="stars">${stars}</span> <span class="rating-number">${rating.toFixed(1)}</span>`;
 }
 
 // Get review count for a product
@@ -97,15 +143,18 @@ function openModal(productId) {
     const modal = document.getElementById('product-modal');
     const modalBody = document.getElementById('modal-body');
 
+    const rating = calculateRating(productId);
+    const reviewCount = getReviewCount(productId);
+    
     modalBody.innerHTML = `
         <div class="modal-product">
-            <img src="${product.image}" alt="${product.name}" class="modal-product-image">
+            <img src="${product.image}" alt="${product.name}" class="modal-product-image" onerror="this.src='https://via.placeholder.com/400x400?text=Image+Not+Available'">
             <div class="modal-product-info">
                 <h2>${product.name}</h2>
                 <span class="product-category">${getCategoryName(product.category)}</span>
                 <div class="product-rating">
-                    ${getStarRating(product.rating)}
-                    <span>(${getReviewCount(product.id)} reviews)</span>
+                    ${getStarRating(rating, reviewCount)}
+                    <span class="review-count">(${reviewCount} ${reviewCount === 1 ? 'review' : 'reviews'})</span>
                 </div>
                 <p class="product-description">${product.description}</p>
                 <div class="product-price">€${product.price.toFixed(2)}</div>
@@ -148,7 +197,7 @@ window.onclick = function(event) {
 // Contact form submission
 function submitContact(event) {
     event.preventDefault();
-    alert('Thank you for your message! We will get back to you soon.');
+    showToast('Message Sent!', 'Thank you for your message! We will get back to you soon.', 'success');
     event.target.reset();
 }
 

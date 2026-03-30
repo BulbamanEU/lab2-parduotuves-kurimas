@@ -38,7 +38,7 @@ function addToCart(productId) {
     updateCartDisplay();
     
     // Show feedback
-    alert(`${product.name} added to cart!`);
+    showToast('Added to Cart', `${product.name} has been added to your cart!`, 'success');
 }
 
 // Remove item from cart
@@ -81,11 +81,17 @@ function updateCartDisplay() {
 
     // Update cart items
     if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+        cartItemsContainer.innerHTML = `
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <p style="font-size: 0.9rem; margin-top: 10px;">Add some products to get started!</p>
+            </div>
+        `;
     } else {
         cartItemsContainer.innerHTML = cart.map(item => `
             <div class="cart-item">
-                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image" onerror="this.src='https://via.placeholder.com/60x60?text=No+Image'">
                 <div class="cart-item-info">
                     <div class="cart-item-title">${item.name}</div>
                     <div class="cart-item-price">€${item.price.toFixed(2)}</div>
@@ -108,12 +114,12 @@ function updateCartDisplay() {
 // Checkout function
 function checkout() {
     if (cart.length === 0) {
-        alert('Your cart is empty!');
+        showToast('Cart Empty', 'Your cart is empty! Add some products first.', 'error');
         return;
     }
 
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    alert(`Thank you for your order! Total: €${total.toFixed(2)}\n\nThis is a demo store. No actual payment will be processed.`);
+    showToast('Order Placed!', `Thank you for your order! Total: €${total.toFixed(2)}. This is a demo store.`, 'success');
     
     // Clear cart
     cart = [];
@@ -122,5 +128,4 @@ function checkout() {
     toggleCart();
 }
 
-// Initialize cart on page load
-document.addEventListener('DOMContentLoaded', initCart);
+// Initialize cart on page load - handled by main.js

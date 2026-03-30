@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -19,13 +22,15 @@
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#products">Products</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="cart-icon" onclick="toggleCart()">
+            <div class="cart-btn" onclick="toggleCart()">
                 <i class="fas fa-shopping-cart"></i>
-                <span id="cart-count">0</span>
+                <span>Cart</span>
+                <span id="cart-count" class="cart-count">0</span>
             </div>
         </div>
     </header>
@@ -108,7 +113,7 @@
     </div>
 
     <!-- Reviews Section -->
-    <section class="reviews-section">
+    <section id="reviews" class="reviews-section">
         <div class="container">
             <h2>Customer Reviews</h2>
             <div id="reviews-container" class="reviews-grid">
@@ -152,6 +157,7 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#products">Products</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
